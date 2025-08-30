@@ -19,7 +19,7 @@ import axios from "axios";
 import { Picker } from "@react-native-picker/picker";
 // import { Animated } from "react-native";
 import RNFS from 'react-native-fs';
-
+import Markdown from 'react-native-markdown-display';
 import { API_KEY } from '@env';
 const apiKey = API_KEY;
 // The server is running on port 8000 as per the Uvicorn terminal output.
@@ -410,10 +410,12 @@ const App = () => {
           </TouchableOpacity>
 
           {riskSummary && (
-            <View style={styles.analysisContainer}>
-              <Text style={styles.analysisTitle}>Risk Summary</Text>
-              <Text style={styles.analysisText}>{riskSummary}</Text>
-            </View>
+           <View style={styles.summaryContainer}>
+          {/* Use the Markdown component to display the text */}
+          <Markdown style={markdownStyles}>
+            {riskSummary}
+          </Markdown>
+        </View>
           )}
         </View>
       </Animated.View>
@@ -652,7 +654,58 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     textAlign: 'center',
+  },
+  summaryContainer: {
+    backgroundColor: "#1c1c1e",
+    borderRadius: 12,
+    padding: 16,
+    marginTop: 20,
+    width: "100%",
+    alignItems: "center",
   }
 });
+
+const markdownStyles = {
+  body: {
+    color: "#fff",
+    fontSize: 16,
+    lineHeight: 22,
+  },
+  heading1: {
+    color: "#ff2d55",
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  heading2: {
+    color: "#ff2d55",
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 6,
+  },
+  bullet_list: {
+    color: "#fff",
+    marginLeft: 10,
+  },
+  list_item: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  strong: {
+    fontWeight: "bold",
+    color: "#fff",
+  },
+  em: {
+    fontStyle: "italic",
+    color: "#fff",
+  },
+  code_inline: {
+    backgroundColor: "#222",
+    color: "#ff2d55",
+    borderRadius: 4,
+    paddingHorizontal: 4,
+    fontFamily: "monospace",
+  },
+};
 
 export default App;
