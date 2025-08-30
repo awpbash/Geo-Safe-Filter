@@ -1,0 +1,11 @@
+flask
+flask-cors
+transformers
+torch
+opencv-python
+numpy
+pillow
+requests
+# Optional for OCR
+paddlepaddle
+paddleocr
