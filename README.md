@@ -1,42 +1,118 @@
 # GenAI Location Privacy
 
-## The Problem — Personally
+![banner](assets/image.png)
 
-Have you ever shared a photo from a trip, a hangout, or just a casual day out, and then later wondered what hidden details you might have accidentally exposed?  
+## The Problem
 
-With the rise of powerful AI, turning off location services isn’t enough anymore. A single photo can reveal a lot more than you think—a distinctive building, a street sign, even the type of car parked nearby. Put together, that’s often enough for AI (or worse, a person with bad intentions) to figure out exactly where you were.  
+Have you ever shared a photo from a trip, a hangout, or just a casual day out, and then later realized that your background gave away more than you intended?  
 
-This is a real privacy concern, and it’s something we wanted to tackle head-on.  
+With the rise of powerful AI models, turning off location services is no longer enough. A single image can reveal clues that most people overlook:  
+- a distinctive **flag** fluttering in the corner,  
+- the **block number** of an HDB,  
+- a **street sign** with just enough detail,  
+- or even a **school logo** on a banner.  
+
+![Geoguessr](assets/geoguessr.png)
+
+To a malicious individual, or even to a casual player of GeoGuessr, these are breadcrumbs that can be pieced together to identify your exact location.  
+
+The difference is that while GeoGuessr is a game, in the real world this can have **serious consequences** from stalking to targeted harassment. That’s why we wanted to flip the game: instead of making it easier to guess your location, our tool makes it **harder by automatically blurring out those tell-tale signs**.  
+
+This is a real, urgent privacy concern that we believe deserves a proactive solution.  
 
 ---
 
 ## Our Inspiration
 
-The spark for this project came from a simple but serious thought: *what if we could use AI to fight back against AI?*  
+The spark for this project came from a simple but important thought: *what if we could use AI to fight back against AI?*  
 
-The same technology that can pinpoint your location could also be repurposed to detect and remove those very clues. Our goal was to build a tool that not only highlights these risks but also empowers people to protect themselves.  
+The very same technology that makes it possible to identify where someone is from a single photo can also be used to detect and remove those exact clues before the photo is shared.  
 
-One story that really struck us happened here in Singapore. A group of teenagers filmed a casual dance video at an HDB void deck. Unfortunately, a stalker managed to figure out their exact location simply by zooming in on the block number in the background. That was terrifying—and it made us realize how exposed we all are, even when sharing something innocent.  
+We see this risk every day in Singapore, where platforms like TikTok have fueled a wave of content creation among young people. Many users, especially female teenagers, are unaware of how much their videos reveal. A simple dance clip in front of an HDB block can unintentionally expose their exact location.  
 
-That incident was a wake-up call, and it pushed us to start working on proactive solutions.
+This risk is not theoretical. In one tragic case in Pakistan, a TikTok star was stalked to her home by a man who had pieced together her location from her content. He eventually shot her dead. [Read more here.](https://www.scmp.com/news/asia/south-asia/article/3312973/teen-tiktok-star-shot-dead-stalker-pakistan)  
+
+That case was a wake-up call: **social media exposure can be deadly.**  
+
+👉 Our mission is simple: use AI not to *find* your location, but to *hide* it.  
+
 
 ---
 
-## How We Built It
+## Before and After
 
-We built a **full-stack mobile app** designed to make privacy protection simple and seamless.  
+Our system detects sensitive objects like signs, flags, and landmarks, and automatically blurs them out before sharing:  
 
-**Frontend**  
-- Built with React Native for Android and iOS.  
-- Users just upload a photo, and the app handles the rest behind the scenes.  
-- The interface is clean, intuitive, and designed so anyone can use it without technical knowledge.  
+<!-- Side-by-side comparison -->
+<div class="compare">
+  <figure>
+    <img src="assets/unblurred.jpg" alt="Original (unblurred)" loading="lazy">
+    <figcaption>Original</figcaption>
+  </figure>
 
-**Backend**  
-- The backend is where the heavy lifting happens.  
-- First, we use **Gemini** to scan the photo for potential location-revealing clues.  
-- Then, with **Grounding DINO**, we pinpoint specific objects like street signs, license plates, and landmarks.  
-- Once identified, we apply a masking/noise injection algorithm to blur or obscure those sensitive areas.  
-- The result? A privacy-safe image that’s ready to be shared without worry.  
+  <figure>
+    <img src="assets/blurred.jpg" alt="Protected (blurred)" loading="lazy">
+    <figcaption>Protected</figcaption>
+  </figure>
+</div>
+
+<style>
+  .compare {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;               /* stacks on narrow screens */
+    margin: 16px 0;
+  }
+  .compare figure {
+    margin: 0;
+    flex: 1 1 320px;               /* min width per image, grows as space allows */
+    max-width: 560px;              /* optional cap */
+  }
+  .compare img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  }
+  .compare figcaption {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #555;
+  }
+</style>
+
+
+---
+
+## Features
+
+- Automatic Detection: Uses state-of-the-art vision-language models to identify sensitive objects such as street signs, landmarks, license plates, and flags.
+
+- Privacy Filters: Offers multiple redaction methods (blur, mosaic, or noise masking) to obscure sensitive areas.
+
+- Before/After Preview: Shows the original and redacted versions side-by-side so users understand what’s being removed.
+
+- Seamless Mobile Workflow: Built as a React Native app for easy upload, preview, and sharing of protected images.
+
+## Video Demo
+
+
+----
+
+
+## Tech Stack
+
+- **Frontend:** React Native (Android & iOS) for photo upload, preview, and sharing.  
+- **Backend:** Python + FastAPI with GPU acceleration (NVIDIA 4060Ti).  
+- **Models:**  
+  - **Gemini 2.5 Flash** – analyzes images and recommends redactions. (API) 
+  - **Grounding DINO** – detects objects like street signs, plates, landmarks. (Huggingface Transformers)  
+  - **GeoCLIP** – demonstrates how easily locations can be inferred.  
+- **Image Processing:** OpenCV (blur/pixelate) + masking/noise injection.  
 
 ---
 
