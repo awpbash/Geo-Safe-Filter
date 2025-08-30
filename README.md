@@ -71,7 +71,7 @@ Our system detects sensitive objects like signs, flags, and landmarks, and autom
 
 - Seamless Mobile Workflow: Built as a React Native app for easy upload, preview, and sharing of protected images.
 
-## Video Demo
+[Video Demo!](https://youtu.be/jxulLvVAeiU)
 
 
 ----
