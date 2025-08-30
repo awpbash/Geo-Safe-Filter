@@ -43,47 +43,20 @@ That case was a wake-up call: **social media exposure can be deadly.**
 
 Our system detects sensitive objects like signs, flags, and landmarks, and automatically blurs them out before sharing:  
 
-<!-- Side-by-side comparison -->
-<div class="compare">
-  <figure>
-    <img src="assets/unblurred.jpg" alt="Original (unblurred)" loading="lazy">
-    <figcaption>Original</figcaption>
-  </figure>
-
-  <figure>
-    <img src="assets/blurred.jpg" alt="Protected (blurred)" loading="lazy">
-    <figcaption>Protected</figcaption>
-  </figure>
-</div>
-
-<style>
-  .compare {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    justify-content: center;
-    flex-wrap: wrap;               /* stacks on narrow screens */
-    margin: 16px 0;
-  }
-  .compare figure {
-    margin: 0;
-    flex: 1 1 320px;               /* min width per image, grows as space allows */
-    max-width: 560px;              /* optional cap */
-  }
-  .compare img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-  }
-  .compare figcaption {
-    text-align: center;
-    margin-top: 8px;
-    font-size: 0.95rem;
-    color: #555;
-  }
-</style>
+<table>
+  <tr>
+    <td>
+      <img src="assets/unblurred.jpg" alt="Original Image" width="400">
+      <br>
+      Original
+    </td>
+    <td>
+      <img src="assets/blurred.jpg" alt="Protected Image" width="400">
+      <br>
+      Protected
+    </td>
+  </tr>
+</table>
 
 
 ---
