@@ -46,12 +46,12 @@ Our system detects sensitive objects like signs, flags, and landmarks, and autom
 <table>
   <tr>
     <td>
-      <img src="assets/unblurred.jpg" alt="Original Image" width="400">
+      <img src="assets/blurred.jpg" alt="Original Image" width="400">
       <br>
       Original
     </td>
     <td>
-      <img src="assets/blurred.jpg" alt="Protected Image" width="400">
+      <img src="assets/unblurred.jpg" alt="Protected Image" width="400">
       <br>
       Protected
     </td>
