@@ -1,4 +1,4 @@
-# GenAI Location Privacy
+# Geo-Safely: GenAI Location Privacy
 
 ![banner](assets/image.png)
 
